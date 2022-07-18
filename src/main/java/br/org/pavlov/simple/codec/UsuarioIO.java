@@ -34,13 +34,15 @@ public class UsuarioIO {
 	} 
 
 	private UsuarioIO(String filePath){
+		this.filePath = filePath;
 		createFile(filePath);
 	}
 
+	private String filePath;
 	private ObjectMapper om = new ObjectMapper();
 
 	public List<Usuario> retrieveAsList() {
-		String content = readFile(FILE_PATH);
+		String content = readFile(this.filePath);
 		List<Usuario> lista = new ArrayList<>();
 		if(isFileEmpty(content)) {
 			return lista;
@@ -63,7 +65,7 @@ public class UsuarioIO {
 	}
 
 	public Map<Integer, Usuario> retrieveAsIdMap() {
-		String content = readFile(FILE_PATH);
+		String content = readFile(this.filePath);
 		Map<Integer, Usuario> mapa = new HashMap<>();
 		if(isFileEmpty(content)) {
 			return mapa;
@@ -91,7 +93,7 @@ public class UsuarioIO {
 		if(isNotBlank(lista)) {
 			content.replace(content.length()-1, content.length(), "");
 		}
-		saveFile(FILE_PATH, content.toString());
+		saveFile(this.filePath, content.toString());
 	}
 
 	/* public Usuario findById(Integer id) {

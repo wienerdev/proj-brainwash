@@ -17,10 +17,11 @@ public enum MessageRef {
 	SERV_RECUPERACAO_PONTOS("S002", "Pontos do tipo %s: %d"),
 
 	// MSG ERR SERVICE
-	ERRO_TIPO_PONTO_INVALIDO("E001", "Tipo de ponto está nulo ou vazio"),
+	ERRO_TIPO_PONTO_NULO_OU_VAZIO("E001", "Tipo de ponto está nulo ou vazio"),
 	ERRO_NOME_USUARIO_INVALIDO("E002", "Usuário %s não encontrado"),
 	ERRO_ID_USUARIO_INVALIDO("E003", "Usuário %d não encontrado"),
-	ERRO_USUARIO_NULO("E004", "Usuário %s está nulo")
+	ERRO_USUARIO_NULO("E004", "Usuário %s está nulo"),
+	ERRO_TIPO_INVALIDO("E005", "Algo de errado aconteceu, possivelmente o tipo de ponto é inválido")
 
 	// MSG DAO
 	;
@@ -33,7 +34,7 @@ public enum MessageRef {
 	public final String code;
 	public final String msg;
 
-	public String formatMsg(Object...args) {
+	public String formatMsg(Object... args) {
 		return String.format(this.msg, args); 
 	}
 }

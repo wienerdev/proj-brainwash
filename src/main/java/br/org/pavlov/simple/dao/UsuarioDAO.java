@@ -10,7 +10,7 @@ import br.org.pavlov.simple.model.Usuario;
 
 public class UsuarioDAO {
 	
-	private UsuarioIO codec;
+	UsuarioIO codec;
 
 	private static final Map<Integer,Usuario> content = UsuarioIO.getInstance().retrieveAsIdMap();
 	private static Integer lastId = content.keySet().stream()

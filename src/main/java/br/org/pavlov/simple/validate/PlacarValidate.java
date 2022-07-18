@@ -1,4 +1,4 @@
-package br.org.pavlov.validate;
+package br.org.pavlov.simple.validate;
 
 import br.org.pavlov.constants.MessageRef;
 import br.org.pavlov.simple.dao.UsuarioDAO;
@@ -17,7 +17,7 @@ public class PlacarValidate {
 
 	public PlacarValidate validarTipoPonto(String tipoPonto) throws Exception {
 		if(isTipoPontoInvalido(tipoPonto)) {
-			throw new Exception(String.format(MessageRef.ERRO_TIPO_PONTO_INVALIDO.msg));
+			throw new Exception(String.format(MessageRef.ERRO_TIPO_PONTO_NULO_OU_VAZIO.msg));
 		}
 		return this;
 	}
