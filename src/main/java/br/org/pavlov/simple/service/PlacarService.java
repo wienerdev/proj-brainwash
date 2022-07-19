@@ -71,4 +71,15 @@ public class PlacarService {
             });
         });
     }
+
+    public void recuperarTipoPontosRegistrados() {
+
+        dao.listAll().forEach(usuario -> {
+            usuario.getPontuacao().forEach((tipo, quantidade) -> {
+                if (quantidade > 0) {
+                    System.out.println("- "+tipo);
+                }
+            });
+        });
+    }
 }

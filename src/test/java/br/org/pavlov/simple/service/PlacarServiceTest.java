@@ -4,6 +4,11 @@ import static br.org.pavlov.constants.MessageRef.SERV_RECUPERACAO_PONTOS;
 import static br.org.pavlov.constants.MessageRef.SERV_REGISTRO_SUCESSO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -116,13 +121,21 @@ public class PlacarServiceTest {
 	public void testRetornarUsuariosComPontos() {
 		// Chamada do servico aqui
 		placarService.recuperarUsuariosQuePossuemPontos();
-
-/* 		assertEquals(1, usuarios.size());
-		assertEquals(param.getNome(), usuarios.get(0).getNome()); */
+		
+		List<Usuario> listaUsuarioComPontos = daoTest.listAll().stream().filter(usuario -> usuario.getPontuacao().size() > 0).collect(Collectors.toList());
+		
+		assertEquals("ESVRENIO", listaUsuarioComPontos.get(0).getNome());
+		assertEquals("ETIVALDA", listaUsuarioComPontos.get(1).getNome());
 	}
 
 	@Test
 	public void testRetornarTiposDePontosJaRegistradosPorUsuario() {
+
+		placarService.recuperarTipoPontosRegistrados();
+
+		List<Usuario> listaUsuarioComPontos = daoTest.listAll().stream().filter(usuario -> usuario.getPontuacao().size() > 0).collect(Collectors.toList());
+
+		assertEquals("[moeda, estrela]", listaUsuarioComPontos.get(0).getPontuacao().keySet().toString());
 	}
 	
 }
